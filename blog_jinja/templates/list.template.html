@@ -1,0 +1,116 @@
+{% block headline %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <style>
+        /* Barra superior */
+        .navbar {
+            background-color: #000; /* Preto */
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Layout principal */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 40px); /* Altura total da janela de visualização menos a altura da barra superior */
+        }
+
+        /* Contêiner esquerdo fixo */
+        .sidebar {
+            background-color: #333; /* Fundo cinza escuro */
+            color: white;
+            width: 250px; /* Largura fixa */
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed;
+            top: calc(40px + 1rem); /* Ajuste para considerar a altura da barra superior e margem superior */
+            left: 10rem; /* Posiciona a sidebar à esquerda */
+            height: calc(100vh - 40px - 2rem); /* Altura total menos a margem inferior */
+            overflow-y: auto;
+            border-radius: 7px;
+        }
+
+        /* Contêiner direito rolável */
+        .content {
+            background-color: #f2f2f2; /* Cinza fraco */
+            padding: 20px;
+            margin-left: calc(250px + 10rem + 1rem); /* Margem para compensar a largura da sidebar e mais um espaço */
+            margin-top: 1rem;
+            border-radius: 7px;
+            overflow-y: auto;
+            height: calc(100vh - 40px - 2rem); /* Altura total menos a margem inferior */
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white; /* Fundo branco */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        Barra Superior Preta
+    </div>
+
+    <div class="main-container">
+        <!-- Contêiner esquerdo fixo -->
+        <div class="sidebar">
+            Menu Fixo
+            <ul>
+                <li><a href="#">Item 1</a></li>
+                <li><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+                <li><a href="#">Item 4</a></li>
+                <li><a href="#">Item 5</a></li>
+            </ul>
+        </div>
+
+        <!-- Contêiner direito rolável -->
+        <div class="content">
+            <h1>Blog Posts:</h1>    
+            <ul>
+                {%- for post in post_list %}
+                    <li><a href="/{{ post.id }}"> {{ post.title }} </a></li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
